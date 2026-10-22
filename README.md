@@ -1,5 +1,24 @@
 # A statically generated blog example using Next.js, Markdown, and TypeScript
 
+## GitHub Pages deployment
+
+The `Deploy blog to GitHub Pages` workflow builds every pull request and every
+push to `main`. On `main`, it saves the exported site to `gh-pages` and deploys
+the same artifact to https://sakkuntyo.github.io/nextjs-blog/.
+
+One-time setup: in **Settings → Pages → Build and deployment**, select
+**GitHub Actions** as the Source. No extra token or deploy key is required.
+`GITHUB_TOKEN` commits to `gh-pages` do not trigger branch-based Pages builds,
+so this workflow explicitly runs `actions/deploy-pages` after saving the branch.
+
+Merge or push the configuration to `main`, then open **Actions → Deploy blog to
+GitHub Pages** to check the run. To retry after enabling Pages, use **Run workflow**
+on `main`. Pages CMS edits to `_posts` will then build and publish automatically.
+
+For local development use `npm ci` and `npm run dev`. The deployment workflow
+sets `NEXT_PUBLIC_BASE_PATH=/nextjs-blog` and `SITE_URL=https://sakkuntyo.github.io`;
+update these values if the repository name or domain changes.
+
 This is the existing [blog-starter](https://github.com/vercel/next.js/tree/canary/examples/blog-starter) plus TypeScript.
 
 This example showcases Next.js's [Static Generation](https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts) feature using Markdown files as the data source.

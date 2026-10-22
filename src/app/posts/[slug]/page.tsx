@@ -1,3 +1,4 @@
+import { withBasePath } from "@/lib/withBasePath";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getAllPosts, getPostBySlug } from "../../../lib/api";
@@ -55,7 +56,7 @@ export function generateMetadata({ params }: Params): Metadata {
   return {
     openGraph: {
       title,
-      images: [post.ogImage.url],
+      images: [withBasePath(post.ogImage.url)],
     },
   };
 }
